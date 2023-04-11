@@ -1,18 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { ExploreContainerComponent } from './explore-container.component';
+import { BeerPage } from './beer.page';
 
-describe('ExploreContainerComponent', () => {
-  let component: ExploreContainerComponent;
-  let fixture: ComponentFixture<ExploreContainerComponent>;
+describe('TabsPage', () => {
+  let component: BeerPage;
+  let fixture: ComponentFixture<BeerPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IonicModule]
+      imports: [BeerPage, IonicModule],
+      providers: [provideRouter([])],
     }).compileComponents();
+  });
 
-    fixture = TestBed.createComponent(ExploreContainerComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BeerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
