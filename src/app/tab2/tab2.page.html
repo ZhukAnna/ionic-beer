@@ -1,15 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Beer
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="beer$ | async as beer; else noBeer">
+    <ion-card  class="ion-padding">
+      <img [alt]="beer.name" [src]="beer.image_url" height="300px" class="image" />
+      <ion-card-header>
+        <ion-card-title>{{beer.name}}</ion-card-title>
+        <ion-card-subtitle>{{beer.tagline}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{beer.description}}
+      </ion-card-content>
+
+      <ion-button (click)="toFavorites(beer)">Add to favorites</ion-button>
+      <ion-toast
+        [isOpen]="isToastOpen"
+        message="Added to favorite"
+        [duration]="3000"
+        (didDismiss)="setOpen(false)"
+        icon="heart"
+        color="success"
+      ></ion-toast>
+    </ion-card>
+  </ng-container>
 </ion-content>
+
+<ng-template #noBeer>
+  <ion-title size="large">
+    We lost this beer, sorry
+  </ion-title>
+</ng-template>

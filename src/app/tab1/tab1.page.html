@@ -5,8 +5,8 @@
 </ion-header>
 <ion-content [fullscreen]="false" class="ion-padding">
   <ion-list *ngIf="beer$ | async as beerList">
-  <ion-card *ngFor="let beer of beerList" class="card">
-    <img [alt]="beer.name" [src]="beer.image_url" height="300px" class="image"/>
+  <ion-card *ngFor="let beer of beerList" class="ion-padding" [routerLink]="['/beer', beer.id]">
+    <img [alt]="beer.name" [src]="beer.image_url" height="300px" class="image" />
     <ion-card-header>
       <ion-card-title>{{beer.name}}</ion-card-title>
       <ion-card-subtitle>Alcohol: {{beer.abv}}%</ion-card-subtitle>
